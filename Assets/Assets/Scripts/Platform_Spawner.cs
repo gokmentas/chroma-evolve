@@ -32,7 +32,7 @@ public class Platform_Spawner : MonoBehaviour
 
         newPlat.transform.position = new Vector2(
             Random.Range(minX, maxX),
-            transform.position.y + Random.Range(0.5f, 1f)
+            transform.position.y
         );
     }
 

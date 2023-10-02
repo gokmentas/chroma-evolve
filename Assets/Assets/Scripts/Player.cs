@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -22,6 +24,14 @@ public class Player : MonoBehaviour
 
     private string WALK_ANIMATION = "Walk";
 
+    public Text scoreText;
+
+    private float score;
+
+    public Transform cam;
+
+    public GameObject pan;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -32,11 +42,27 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        if(rigidbody2.velocity.y > 0 && transform.position.y > score)
+        {
+            score = transform.position.y;
+        }
+        scoreText.text = Mathf.Round(score).ToString();
+
+        if(cam.position.y > transform.position.y + 7f)
+        {
+            Time.timeScale = 0f;
+            pan.SetActive(true);
+        }
+
+    }
+
+    private void FixedUpdate()
     {
         MoveWithKeyboard();
         PlayerAnimate();
@@ -70,6 +96,11 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("Platform")){
             rigidbody2.AddForce(new Vector2(0f, pushForce), ForceMode2D.Impulse);
         }
+    }
+
+    public void GameLoad()
+    {
+        SceneManager.LoadScene(0);
     }
 
 } // class
