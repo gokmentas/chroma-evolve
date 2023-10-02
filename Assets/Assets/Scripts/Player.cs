@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
 
     [SerializeField]
-    private float speed = 10f;
+    private float speed = 0.1f;
 
     [SerializeField]
-    private float jumpForce = 11f;
+    private float pushForce = 3f;
 
     private float movementX;
 
@@ -39,12 +40,6 @@ public class Player : MonoBehaviour
     {
         MoveWithKeyboard();
         PlayerAnimate();
-        PlayerJump();
-    }
-
-    private void FixedUpdate()
-    {
-
     }
 
     void MoveWithKeyboard()
@@ -71,15 +66,10 @@ public class Player : MonoBehaviour
         }
     }
 
-    void PlayerJump()
-    {
-
-        if (Input.GetButtonDown("Jump"))
-        {
-            rigidbody2.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.CompareTag("Platform")){
+            rigidbody2.AddForce(new Vector2(0f, pushForce), ForceMode2D.Impulse);
         }
-
     }
-
 
 } // class
