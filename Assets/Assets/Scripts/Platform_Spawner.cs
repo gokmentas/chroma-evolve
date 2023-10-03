@@ -5,7 +5,7 @@ using UnityEngine;
 public class Platform_Spawner : MonoBehaviour
 {
 
-    public GameObject plat;
+    public GameObject[] plat;
 
     [SerializeField]
     private float speed = 5;
@@ -28,7 +28,7 @@ public class Platform_Spawner : MonoBehaviour
     }
 
     private void Spawn(){
-        GameObject newPlat = Instantiate(plat);
+        GameObject newPlat = Instantiate(plat[Random.Range(0, 3)]);
 
         newPlat.transform.position = new Vector2(
             Random.Range(minX, maxX),

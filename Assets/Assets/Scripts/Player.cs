@@ -26,11 +26,17 @@ public class Player : MonoBehaviour
 
     public Text scoreText;
 
+    private GameObject lastPlatform;
+
+    public Text redText, yellowText;
+
     private float score;
+    private float redScore, yellowScore = 0;
 
     public Transform cam;
 
     public GameObject pan;
+    public GameObject boost;
 
     private void Awake()
     {
@@ -58,6 +64,9 @@ public class Player : MonoBehaviour
         {
             Time.timeScale = 0f;
             pan.SetActive(true);
+            if(boost != null){
+                boost.SetActive(true);
+            }
         }
 
     }
@@ -96,11 +105,41 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("Platform")){
             rigidbody2.AddForce(new Vector2(0f, pushForce), ForceMode2D.Impulse);
         }
+
+        if(other.gameObject.name.Contains("Platform_Red") && other.gameObject != lastPlatform){
+            redScore += 1;
+            redText.text = redScore.ToString();
+            lastPlatform = other.gameObject;
+        }else if(other.gameObject.name.Contains("Platform_Yellow") && other.gameObject != lastPlatform){
+            yellowScore += 1;
+            yellowText.text = yellowScore.ToString();
+            lastPlatform = other.gameObject;
+        }
     }
 
     public void GameLoad()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void RedGmeLoad(){
+        if(redScore >= 1){
+        pan.SetActive(false);
+        Time.timeScale = 1f;
+        transform.position = lastPlatform.transform.position;
+        speed = 6;
+        rigidbody2.gravityScale = 2f;
+        }
+    }
+
+    public void YellowGmeLoad(){
+        if(yellowScore >= 1){
+        pan.SetActive(false);
+        Time.timeScale = 1f;
+        transform.position = lastPlatform.transform.position;
+        rigidbody2.gravityScale = 1.6f;
+        speed = 3;
+        }
     }
 
 } // class
