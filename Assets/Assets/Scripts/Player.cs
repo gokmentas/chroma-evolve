@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour
 {
@@ -35,8 +36,7 @@ public class Player : MonoBehaviour
 
     public Transform cam;
 
-    public GameObject pan;
-    public GameObject boost;
+    public GameObject pan, boost, eatedApple, eatedBanana;
 
     private void Awake()
     {
@@ -124,6 +124,7 @@ public class Player : MonoBehaviour
 
     public void RedGmeLoad(){
         if(redScore >= 1){
+        eatedApple.SetActive(true);
         pan.SetActive(false);
         Time.timeScale = 1f;
         transform.position = lastPlatform.transform.position;
@@ -134,6 +135,7 @@ public class Player : MonoBehaviour
 
     public void YellowGmeLoad(){
         if(yellowScore >= 1){
+        eatedBanana.SetActive(true);
         pan.SetActive(false);
         Time.timeScale = 1f;
         transform.position = lastPlatform.transform.position;
