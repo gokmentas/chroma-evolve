@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Platform_Spawner : MonoBehaviour
+public class Fruit_Spawner : MonoBehaviour
 {
 
-    public GameObject plat;
+    public GameObject[] fruits;
 
-    [SerializeField]
-    private float speed = 5;
-
+    public float speed = 5;
     public float minX;
     public float maxX;
-
     public float interval;
 
     // Start is called before the first frame update
@@ -28,12 +25,12 @@ public class Platform_Spawner : MonoBehaviour
     }
 
     private void Spawn(){
-        GameObject newPlat = Instantiate(plat);
+        GameObject newFruit = Instantiate(fruits[Random.Range(0, 2)]);
 
-        newPlat.transform.position = new Vector2(
+        newFruit.transform.position = new Vector2(
             Random.Range(minX, maxX),
             transform.position.y
         );
     }
 
-} // class
+}
