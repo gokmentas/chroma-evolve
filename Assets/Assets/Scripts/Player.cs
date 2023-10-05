@@ -114,7 +114,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Fruit")){
-            Debug.Log("Fruit Detected: " + other.gameObject.name);
             if(other.gameObject.name.Contains("Apple"))
             {
                 redScore += 1;

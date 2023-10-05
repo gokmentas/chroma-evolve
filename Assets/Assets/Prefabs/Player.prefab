@@ -169,6 +169,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   pushForce: 9
+  scoreText: {fileID: 0}
+  limitRedText: {fileID: 0}
+  LimitYellowText: {fileID: 0}
+  redText: {fileID: 0}
+  yellowText: {fileID: 0}
+  cam: {fileID: 0}
+  pan: {fileID: 0}
+  boost: {fileID: 0}
+  eatedApple: {fileID: 0}
+  eatedBanana: {fileID: 0}
 --- !u!50 &6078440700206957140
 Rigidbody2D:
   serializedVersion: 4
