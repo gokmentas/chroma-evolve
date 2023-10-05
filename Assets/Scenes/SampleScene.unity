@@ -2302,9 +2302,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1053168961}
     - target: {fileID: 746410799517141689, guid: 32ae19a374b5eca40ad6051c1a550a9e, type: 3}
+      propertyPath: redLimitText
+      value: 
+      objectReference: {fileID: 820157313}
+    - target: {fileID: 746410799517141689, guid: 32ae19a374b5eca40ad6051c1a550a9e, type: 3}
       propertyPath: plat.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 746410799517141689, guid: 32ae19a374b5eca40ad6051c1a550a9e, type: 3}
+      propertyPath: yellowLimitText
+      value: 
+      objectReference: {fileID: 1825420935}
     - target: {fileID: 746410799517141689, guid: 32ae19a374b5eca40ad6051c1a550a9e, type: 3}
       propertyPath: plat.Array.data[0]
       value: 
@@ -2365,9 +2373,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5777067719767268671, guid: 32ae19a374b5eca40ad6051c1a550a9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -19.79
+      objectReference: {fileID: 0}
     - target: {fileID: 6078440700206957140, guid: 32ae19a374b5eca40ad6051c1a550a9e, type: 3}
       propertyPath: m_Mass
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6078440700206957140, guid: 32ae19a374b5eca40ad6051c1a550a9e, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2428,7 +2444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8271872447566314053, guid: 0cca9fc228a99a14fa2672f272d44a68, type: 3}
       propertyPath: m_Name
-      value: Platform
+      value: Platform_Green_0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

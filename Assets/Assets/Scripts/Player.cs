@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.CompareTag("Platform")){
+            rigidbody2.velocity = new Vector2(rigidbody2.velocity.x, 0f);
             rigidbody2.AddForce(new Vector2(0f, pushForce), ForceMode2D.Impulse);
         }
 
@@ -113,6 +114,8 @@ public class Player : MonoBehaviour
         }else if(other.gameObject.name.Contains("Platform_Yellow") && other.gameObject != lastPlatform){
             yellowScore += 1;
             yellowText.text = yellowScore.ToString();
+            lastPlatform = other.gameObject;
+        }else{
             lastPlatform = other.gameObject;
         }
     }
@@ -125,7 +128,12 @@ public class Player : MonoBehaviour
     public void RedGmeLoad(){
         if(redScore >= 1){
         eatedApple.SetActive(true);
+        eatedBanana.SetActive(false);
         pan.SetActive(false);
+        redScore = 0;
+        yellowScore = 0;
+        redText.text = "0";
+        yellowText.text = "0";
         Time.timeScale = 1f;
         transform.position = lastPlatform.transform.position;
         speed = 6;
@@ -136,7 +144,12 @@ public class Player : MonoBehaviour
     public void YellowGmeLoad(){
         if(yellowScore >= 1){
         eatedBanana.SetActive(true);
+        eatedApple.SetActive(false);
         pan.SetActive(false);
+        redScore = 0;
+        yellowScore = 0;
+        redText.text = "0";
+        yellowText.text = "0";
         Time.timeScale = 1f;
         transform.position = lastPlatform.transform.position;
         rigidbody2.gravityScale = 1.6f;
