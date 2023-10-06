@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
 
     public void RedGmeLoad()
     {
-        if (redScore >= limit)
+        if (redScore >= limit && Time.timeScale == 0)
         {
             respawn.Play();
             eatedApple.SetActive(true);
@@ -160,7 +160,7 @@ public class Player : MonoBehaviour
 
     public void YellowGmeLoad()
     {
-        if (yellowScore >= limit)
+        if (yellowScore >= limit && Time.timeScale == 0)
         {
             respawn.Play();
             eatedBanana.SetActive(true);
