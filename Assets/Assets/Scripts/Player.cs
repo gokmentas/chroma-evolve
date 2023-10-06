@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
 
     public GameObject pan, boost, eatedApple, eatedBanana;
 
+    public AudioSource jump, collect, respawn;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -108,12 +110,14 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("Platform")){
             rigidbody2.velocity = new Vector2(rigidbody2.velocity.x, 0f);
             rigidbody2.AddForce(new Vector2(0f, pushForce), ForceMode2D.Impulse);
+            jump.Play();
             lastPlatform = other.gameObject;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.CompareTag("Fruit")){
+            collect.Play();
             if(other.gameObject.name.Contains("Apple"))
             {
                 redScore += 1;
@@ -132,41 +136,47 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void RedGmeLoad(){
-        if(redScore >= limit){
-        eatedApple.SetActive(true);
-        eatedBanana.SetActive(false);
-        pan.SetActive(false);
-        redScore = 0;
-        yellowScore = 0;
-        redText.text = "0";
-        yellowText.text = "0";
-        Time.timeScale = 1f;
-        transform.position = lastPlatform.transform.position;
-        speed = 6;
-        rigidbody2.gravityScale = 2f;
-        limit *= 2;
-        LimitYellowText.text = limit.ToString();
-        limitRedText.text = limit.ToString();
+    public void RedGmeLoad()
+    {
+        if (redScore >= limit)
+        {
+            respawn.Play();
+            eatedApple.SetActive(true);
+            eatedBanana.SetActive(false);
+            pan.SetActive(false);
+            redScore = 0;
+            yellowScore = 0;
+            redText.text = "0";
+            yellowText.text = "0";
+            Time.timeScale = 1f;
+            transform.position = lastPlatform.transform.position;
+            speed = 6;
+            rigidbody2.gravityScale = 2f;
+            limit *= 2;
+            LimitYellowText.text = limit.ToString();
+            limitRedText.text = limit.ToString();
         }
     }
 
-    public void YellowGmeLoad(){
-        if(yellowScore >= limit){
-        eatedBanana.SetActive(true);
-        eatedApple.SetActive(false);
-        pan.SetActive(false);
-        redScore = 0;
-        yellowScore = 0;
-        redText.text = "0";
-        yellowText.text = "0";
-        Time.timeScale = 1f;
-        transform.position = lastPlatform.transform.position;
-        rigidbody2.gravityScale = 1.6f;
-        speed = 3;
-        limit *= 2;
-        LimitYellowText.text = limit.ToString();
-        limitRedText.text = limit.ToString();
+    public void YellowGmeLoad()
+    {
+        if (yellowScore >= limit)
+        {
+            respawn.Play();
+            eatedBanana.SetActive(true);
+            eatedApple.SetActive(false);
+            pan.SetActive(false);
+            redScore = 0;
+            yellowScore = 0;
+            redText.text = "0";
+            yellowText.text = "0";
+            Time.timeScale = 1f;
+            transform.position = lastPlatform.transform.position;
+            rigidbody2.gravityScale = 1.6f;
+            speed = 3;
+            limit *= 2;
+            LimitYellowText.text = limit.ToString();
+            limitRedText.text = limit.ToString();
         }
     }
 
